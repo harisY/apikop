@@ -63,11 +63,11 @@ exports.update = (req, res) => {
     if (err) {
       if (err.kind === 'not_found') {
         res.status(404).send({
-          message: `Not found Karyawan with id ${req.params.nik}.`,
+          message: `Not found Karyawan with NIK ${req.params.nik}.`,
         });
       } else {
         res.status(500).send({
-          message: 'Error updating Karyawan with nik ' + req.params.nik,
+          message: 'Error updating Karyawan with NIK ' + req.params.nik,
         });
       }
     } else res.send(data);
