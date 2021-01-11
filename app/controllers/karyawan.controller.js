@@ -48,7 +48,7 @@ exports.findOne = (req, res) => {
           message: 'Error retrieving Karyawan with id ' + req.params.nik,
         });
       }
-    } else res.send(data);
+    } else res.status(200).send(data);
   });
 };
 

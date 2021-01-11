@@ -40,7 +40,7 @@ Karyawan.findById = (nik, result) => {
 };
 
 Karyawan.getAll = (result) => {
-  sql.query('SELECT * FROM m_karyawan', (err, res) => {
+  sql.query('SELECT NIK, nama FROM m_karyawan', (err, res) => {
     if (err) {
       console.log('error: ', err);
       result(null, err);
