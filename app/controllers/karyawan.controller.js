@@ -1,5 +1,6 @@
 const Karyawan = require('../models/karyawan.model.js');
 
+// Create Karyawan.
 exports.create = (req, res) => {
   if (!req.body) {
     res.status(400).send({
