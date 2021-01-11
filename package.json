@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harisY/apikop.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "haris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harisY/apikop/issues"
+  },
+  "homepage": "https://github.com/harisY/apikop#readme"
+}
