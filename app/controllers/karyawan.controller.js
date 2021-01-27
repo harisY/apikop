@@ -41,14 +41,14 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === 'not_found') {
         res.status(404).send({
-          message: `Not found Karyawan with id ${req.params.nik}.`,
+          message: `Karyawan id ${req.params.nik} tidak ditemukan.`,
         });
       } else {
         res.status(500).send({
           message: 'Error retrieving Karyawan with id ' + req.params.nik,
         });
       }
-    } else res.status(200).send(data);
+    } else res.send(data);
   });
 };
 

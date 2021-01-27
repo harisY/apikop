@@ -39,6 +39,7 @@ Karyawan.findById = (nik, result) => {
   );
 };
 
+
 Karyawan.getAll = (result) => {
   sql.query('SELECT NIK, nama FROM m_karyawan', (err, res) => {
     if (err) {
@@ -51,7 +52,6 @@ Karyawan.getAll = (result) => {
     result(null, res);
   });
 };
-
 Karyawan.updateById = (nik, karyawan, result) => {
   sql.query(
     'UPDATE m_karyawan SET nama = ? WHERE NIK = ?',

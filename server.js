@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 });
 
 require('./app/routes/karyawan.route.js')(app);
+require('./app/routes/potongan.route.js')(app);
 app.listen(3001, () => {
   console.log(`Server started on port 3001`);
 });
