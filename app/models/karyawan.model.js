@@ -17,7 +17,7 @@ Karyawan.create = (newKaryawan, result) => {
     result(null, { nik: res.insertedNIK, ...newKaryawan });
   });
 };
-
+//komentar
 Karyawan.findById = (nik, result) => {
   sql.query(
     `Select NIK, nama from m_karyawan Where NIK = ${nik}`,
