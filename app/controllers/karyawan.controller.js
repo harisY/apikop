@@ -52,6 +52,22 @@ exports.findOne = (req, res) => {
   });
 };
 
+exports.loginSesison = (req, res) => {
+  Karyawan.login(req.params.noanggota, req.params.pwd, (err, data) => {
+    if (err) {
+      if (err.kind === 'not_found') {
+        res.status(404).send({
+          message: `No Anggota atau Password salah`,
+        });
+      } else {
+        res.status(500).send({
+          message: 'Error retrieving Karyawan with id ' + req.params.nik,
+        });
+      }
+    } else res.send(data);
+  });
+};
+
 // Update a Karyawan identified by the Karyawan in the request
 exports.update = (req, res) => {
   if (!req.body) {
@@ -60,19 +76,24 @@ exports.update = (req, res) => {
     });
   }
 
-  Karyawan.updateById(req.params.nik, new Karyawan(req.body), (err, data) => {
-    if (err) {
-      if (err.kind === 'not_found') {
-        res.status(404).send({
-          message: `Not found Karyawan with NIK ${req.params.nik}.`,
-        });
-      } else {
-        res.status(500).send({
-          message: 'Error updating Karyawan with NIK ' + req.params.nik,
-        });
-      }
-    } else res.send(data);
-  });
+  Karyawan.updateById(
+    req.params.noanggota,
+    new Karyawan(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === 'not_found') {
+          res.status(404).send({
+            message: `Not found Karyawan with NO Anggota ${req.params.noanggota}.`,
+          });
+        } else {
+          res.status(500).send({
+            message:
+              'Error updating Karyawan with Anggota ' + req.params.noanggota,
+          });
+        }
+      } else res.send(data);
+    }
+  );
 };
 
 // Delete a Karyawan with the specified NIK in the request

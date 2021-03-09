@@ -3,8 +3,9 @@ module.exports = (app) => {
 
   app.post('/api/karyawan', karyawan.create);
   app.get('/api/karyawan', karyawan.findAll);
-  app.get('/api/karyawan/:nik', karyawan.findOne);
-  app.put('/api/karyawan/:nik', karyawan.update);
-  app.delete('/api/karyawan/:nik', karyawan.delete);
+  app.get('/api/karyawan/:noanggota', karyawan.findOne);
+  app.put('/api/karyawan/:noanggota', karyawan.update);
+  app.delete('/api/karyawan/:noanggota', karyawan.delete);
   app.delete('/api/karyawan', karyawan.deleteAll);
+  app.get('/api/karyawan/:noanggota/:pwd', karyawan.loginSesison);
 };

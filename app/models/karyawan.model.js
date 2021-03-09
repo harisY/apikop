@@ -1,8 +1,9 @@
 const sql = require('./db.js');
 
 const Karyawan = function (karyawan) {
-  this.nik = karyawan.nik;
+  this.noanggota = karyawan.noanggota;
   this.nama = karyawan.nama;
+  this.pwd = karyawan.pwd;
 };
 
 Karyawan.create = (newKaryawan, result) => {
@@ -39,6 +40,28 @@ Karyawan.findById = (nik, result) => {
   );
 };
 
+Karyawan.login = (noanggota, pwd, result) => {
+  console.log(noanggota);
+  console.log(pwd);
+  sql.query(
+    `Select noanggota, nama, dept from m_karyawan Where noanggota = ${noanggota} and pwd='${pwd}'`,
+    (err, res) => {
+      if (err) {
+        console.log('error: ', err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log('found karyawan: ', res[0]);
+        result(null, res[0]);
+        return;
+      }
+
+      // not found Customer with the id
+      result({ kind: 'not_found' }, null);
+    }
+  );
+};
 
 Karyawan.getAll = (result) => {
   sql.query('SELECT NIK, nama FROM m_karyawan', (err, res) => {
@@ -52,10 +75,10 @@ Karyawan.getAll = (result) => {
     result(null, res);
   });
 };
-Karyawan.updateById = (nik, karyawan, result) => {
+Karyawan.updateById = (noanggota, karyawan, result) => {
   sql.query(
-    'UPDATE m_karyawan SET nama = ? WHERE NIK = ?',
-    [karyawan.nama, nik],
+    'UPDATE m_karyawan SET pwd = ? WHERE noanggota = ?',
+    [karyawan.pwd, noanggota],
     (err, res) => {
       if (err) {
         console.log('error: ', err);
@@ -69,8 +92,8 @@ Karyawan.updateById = (nik, karyawan, result) => {
         return;
       }
 
-      console.log('updated karyawan: ', { nik: nik, ...karyawan });
-      result(null, { nik: nik, ...karyawan });
+      console.log('updated karyawan: ', { noanggota: noanggota, ...karyawan });
+      result(null, { message: 'Ok' });
     }
   );
 };
